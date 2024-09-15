@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create New Listening</h2>
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Enter Title</label>
+            <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control" id="description" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label for="imageurl">ImageURL</label>
+            <input type="text" name="imageurl" class="form-control" id="imageurl" placeholder="ImageURL">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" min = "0" name="price" class="price" id="exampleInputEmail1" placeholder="Price">
+        </div>
+        <div class="form-group">
+            <label for="category">Choose a Category</label>
+            <select name="category" id="category">
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Create New Listening</button>
+    </form>
+{% endblock %}
